@@ -9,7 +9,6 @@ import UpdateContext from "./components/Updatedata";
 import { SettingsSkeleton } from "./settings-skeleton";
 import { Button } from "@/components/ui/button";
 
-type typeuid = string | null;
 
 export function Settings() {
   const authContext = useGlobalAuth();
@@ -17,8 +16,6 @@ export function Settings() {
   const [data, setData] = useState<any>({});
   const [updatedata, SetUpdateData] = useState<boolean>(false);
   const [loading, SetLoading] = useState(true);
-
-  
 
   useEffect(() => {
     const getData = async () => {
