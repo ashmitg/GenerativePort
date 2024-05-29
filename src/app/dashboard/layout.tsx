@@ -33,7 +33,7 @@ export default function DashboardLayout({
   return (
     <>
         
-        <div className="flex h-screen overflow-auto">
+        <div className="flex ">
             <Navbar/>
         <main className="w-full pt-16">{children}</main>
       </div>
