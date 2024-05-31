@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Generative Portfolio
+
+A powerful and customizable portfolio generator built with Next.js, shadcn UI, and Aceternity UI. This project leverages Firebase for backend and authentication, allowing users to set up and manage their projects, experiences, skills, values, education, and social links. Additionally, it features custom pitches for companies using the GPT API.
+
+## Demo Settings
+
+[!Demo](https://github.com/ashmitg/GenerativePort/assets/84148720/e6f366c0-310c-46da-abc8-ce8996cdf859)
+
+## Demo Pitch
+
+[!Demo](https://github.com/ashmitg/GenerativePort/assets/84148720/bc8a1ff6-524d-4ed9-8033-5fd1c0f9c103)
+
+## Demo Pitch Website
+
+[!Demo](https://github.com/ashmitg/GenerativePort/assets/84148720/1b1ccb4c-be18-449e-80c2-bd3914912031)
+
+## Features
+
+- **Next.js** for fast and efficient server-side rendering
+- **shadcn UI** and **Aceternity UI** for beautiful and responsive designs
+- **Firebase** for backend services and authentication
+- **Settings** page to manage:
+  - Projects
+  - Experiences
+  - Skills
+  - Values
+  - Education (College)
+  - Social Links
+    
+- **Edit Your Pitches**
+<img width="760" alt="Screen Shot 2024-05-31 at 2 05 46 PM" src="https://github.com/ashmitg/GenerativePort/assets/84148720/58e6d753-6f79-44b2-9199-d3a647d6f173">
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (>= 14.x)
+- Firebase account
+- OpenAI API key for GPT
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/generative-portfolio.git
+   cd generative-portfolio
+2. Install and Set the Environemnt Variables
+   ```bash
+   npm install && npm run dev
+   set .env variables, need firebase acc
+4. Set your profile, projects, settings, in the dashboard
+   
