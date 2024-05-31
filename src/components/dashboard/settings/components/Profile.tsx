@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 import { SetSettingData } from "@/actions/settings/setsettings/action";
 import { GetProfileData } from "@/actions/settings/getsettings/action";
@@ -76,7 +77,6 @@ export function Profile() {
   }, [form, uid]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-
     Setloading(true);
     if (uid) {
       let res = await SetSettingData(
@@ -89,6 +89,12 @@ export function Profile() {
       Setloading(false);
     }
   }
+
+  const handleButtonClick = () => {
+    const baseUrl = window.location.origin; // Get the base URL dynamically
+    window.open(baseUrl, "_blank"); // Open the base URL in a new tab
+  };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -251,8 +257,11 @@ export function Profile() {
                 Please wait
               </Button>
             )}
-
-            <Button className="w-full" variant="outline">
+            <Button
+              onClick={handleButtonClick}
+              className="w-full"
+              variant="outline"
+            >
               See Public Profile
             </Button>
           </div>
