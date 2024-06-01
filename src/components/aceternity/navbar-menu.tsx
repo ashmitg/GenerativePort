@@ -1,6 +1,12 @@
 "use client";
 import React from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaEnvelope,
+  FaFileAlt,
+} from "react-icons/fa";
 
 export function NavbarDemo({
   data,
@@ -11,7 +17,7 @@ export function NavbarDemo({
 }) {
   return (
     <nav
-      className={` text-white bg-stone-950 inset-x-0 w-full mx-auto z-50 ${className}`}
+      className={`text-white bg-stone-950 inset-x-0 w-full mx-auto z-50 ${className}`}
     >
       <div className="container mx-auto flex flex-wrap items-center">
         <div className="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
@@ -60,6 +66,16 @@ export function NavbarDemo({
                 href={`mailto:${data?.email}`}
               >
                 <FaEnvelope size={25} />
+              </a>
+            </li>
+            <li className="mr-3">
+              <a
+                className="inline-block text-gray-200 no-underline hover:text-gray-600 hover:text-underline py-2 px-4"
+                href={data?.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFileAlt size={25} />
               </a>
             </li>
           </ul>
