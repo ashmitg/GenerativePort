@@ -9,10 +9,17 @@ interface iData {
 }
 
 export function Experience({ data }: { data: iData[] }) {
-  console.log(data, "data");
-
   return (
     <div className="grid gap-6 justify-center items-center py-10 ">
+      {Object.keys(data).length > 1 ? (
+        <h1 className="text-white text-3xl text-center font-bold">
+          Experiences
+        </h1>
+      ) : (
+        <h1 className="text-white text-3xl text-center font-bold">
+          Experience
+        </h1>
+      )}
       {data &&
         data.map((obj: iData, index: number) => (
           <div key={index}>

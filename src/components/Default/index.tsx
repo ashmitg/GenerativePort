@@ -62,8 +62,14 @@ export function HomePage({ id }: { id: string | null }) {
 
             {id && paragraphs && <TextGenerateSwap text={paragraphs?.intro} />}
 
-            <ProjectCarousel data={settingsData["Projects"]} />
-            <CanvasRevealEffectDemo data={settingsData["Values"]} />
+            {settingsData["Projects"] && (
+              <ProjectCarousel data={settingsData["Projects"]} />
+            )}
+
+            {settingsData["Values"] && (
+              <CanvasRevealEffectDemo data={settingsData["Values"]} />
+            )}
+
             {id && paragraphs && (
               <TextGenerate
                 title={"Alignment with requirements"}
@@ -71,14 +77,20 @@ export function HomePage({ id }: { id: string | null }) {
               />
             )}
 
-            <CardHoverEffectDemo data={settingsData["Skills"]} />
+            {settingsData["Skills"] && (
+              <CardHoverEffectDemo data={settingsData["Skills"]} />
+            )}
+
             {id && paragraphs && (
               <TextGenerate
                 title={"My closing statement (powered by gpt)"}
                 text={paragraphs?.conclusion}
               />
             )}
-            <Experience data={settingsData["Experiences"]} />
+
+            {settingsData["Experiences"] && (
+              <Experience data={settingsData["Experiences"]} />
+            )}
           </div>
 
           <NavbarDemo data={profileData} className="bottom-0" />
