@@ -9,6 +9,7 @@ import UpdatePitchData from '../Updatedata'
 import Link from 'next/link'
 
 interface PitchSectionProps {
+    uid: string | null;
     title: string;
     description: string;
     link: string;
@@ -18,13 +19,15 @@ interface PitchSectionProps {
     conclusion: string;
 }
 
-export const PitchSection: FC<PitchSectionProps> = ({ title, description, link, id, intro, body, conclusion }) => {
+export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, link, id, intro, body, conclusion }) => {
     const { SetUpdateData } = useContext(UpdatePitchData);
     const [open, setOpen] = useState(false);
 
     const clickDeletePitch = async () => {
-        await DeletePitch(id);
-        SetUpdateData(true);
+        if (uid) {
+            await DeletePitch(id, uid);
+            SetUpdateData(true);
+        }
     }
     return (
         <Card>

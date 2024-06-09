@@ -91,7 +91,6 @@ export function Dashboard() {
   if (loading) {
     return <DashboardSkeleton />;
   }
-
   return (
     <UpdatePitchData.Provider value={{ SetUpdateData }}>
       {loading ? (
@@ -190,6 +189,7 @@ export function Dashboard() {
                     {data.map((items: Item) => (
                       <div key={items.id}>
                         <PitchSection
+                          uid={uid}
                           id={items.id}
                           title={items.title}
                           description={items.description}

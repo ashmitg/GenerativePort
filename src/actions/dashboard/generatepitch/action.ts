@@ -34,7 +34,7 @@ export async function GeneratePitch(uid: string, pitchdata: any) {
   const messageContent = response.choices[0].message.content;
   if (messageContent !== null) {
     let pitchdataobject = JSON.parse(messageContent);
-    await SetPitchData(null, { ...pitchdata, intro: pitchdataobject?.Introduction, body: pitchdataobject?.Body, conclusion: pitchdataobject?.Conclusion });
+    await SetPitchData(null, uid, { ...pitchdata, intro: pitchdataobject?.Introduction, body: pitchdataobject?.Body, conclusion: pitchdataobject?.Conclusion });
   }
   return messageContent;
 }

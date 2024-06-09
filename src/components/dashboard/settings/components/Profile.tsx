@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 
 import { SetSettingData } from "@/actions/settings/setsettings/action";
@@ -138,7 +139,7 @@ export function Profile() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Textarea placeholder="shadcn" {...field} />
                       </FormControl>
                       <FormDescription>
                         This is your public bio.

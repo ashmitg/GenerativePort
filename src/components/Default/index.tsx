@@ -12,6 +12,7 @@ import { GetPitches } from "@/actions/dashboard/getpitches/action";
 import { GetProfileData } from "@/actions/settings/getsettings/action";
 import Loading from "./loading";
 import { Experience } from "../experience";
+import {UpdateAnalytics} from "@/actions/analytics/action";
 
 export function HomePage({ id }: { id: string | null }) {
   const [loading, setLoading] = useState(true);
@@ -24,14 +25,16 @@ export function HomePage({ id }: { id: string | null }) {
       let user = await GetUser();
 
       if (id) {
-        const [settingdata, profiledata, paragraphsdata] = await Promise.all([
+        const [settingdata, profiledata, paragraphsdata, bool] = await Promise.all([
           GetSettingsData(user),
           GetProfileData(user),
           GetPitches(id),
+          UpdateAnalytics(id, user, {}),
         ]);
         setSettingsData(settingdata);
         setProfileData(profiledata);
         setParagraphs(paragraphsdata);
+
       } else {
         const [settingdata, profiledata] = await Promise.all([
           GetSettingsData(user),
