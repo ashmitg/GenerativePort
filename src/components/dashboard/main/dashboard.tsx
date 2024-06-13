@@ -42,7 +42,7 @@ export function Dashboard() {
   const [loading, setLoading] = useState<boolean>(true);
   const [updatedata, SetUpdateData] = useState<boolean>(false);
 
-  
+
 
   useEffect(() => {
     const getData = async () => {
@@ -58,6 +58,8 @@ export function Dashboard() {
       }
       setLoading(false);
       SetUpdateData(false);
+      setDataLoading(false);
+
       return res;
     };
 
@@ -83,11 +85,7 @@ export function Dashboard() {
   const Servertrigger = async (values: z.infer<typeof formSchema>) => {
     if (uid) {
       setDataLoading(true);
-      let res = await GeneratePitch(uid, values);
-
-      if (res) {
-        setDataLoading(false);
-      }
+      await GeneratePitch(uid, values);
       SetUpdateData(true);
     }
   };
