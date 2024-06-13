@@ -5,11 +5,15 @@ import { GetProfileData } from '../../settings/getsettings/action'
 import { db } from '@/firebase'
 import {CreatePitch } from '../Setpitch/action'
 
-export async function GeneratePitch(uid: string, pitchdata: any) {
 
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-  })
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+
+export async function GeneratePitch(uid: string, pitchdata: any) {
+  console.log(pitchdata, "pitchdata")
+  
   let profileData = await GetProfileData(uid);
 
   const response = await openai.chat.completions.create({
