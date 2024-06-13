@@ -41,20 +41,23 @@ export function Dashboard() {
   const [loading, setLoading] = useState<boolean>(true);
   const [updatedata, SetUpdateData] = useState<boolean>(false);
 
-  const getData = async () => {
-    let res = await GetPitches(null);
-    if (res) {
-      setData(res as Item[]);
-    } else {
-      setData([]);
-    }
-    SetUpdateData(false);
-    return res;
-  };
+  
 
   useEffect(() => {
+    const getData = async () => {
+      let res = await GetPitches(null);
+      
+      if (res) {
+        setData(res as Item[]);
+      } else {
+        setData([]);
+      }
+      setLoading(false);
+      SetUpdateData(false);
+      return res;
+    };
+
     getData();
-    setLoading(false);
   }, [updatedata]);
 
   const authContext = useGlobalAuth();

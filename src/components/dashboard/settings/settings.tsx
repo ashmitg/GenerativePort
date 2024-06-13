@@ -21,9 +21,11 @@ export function Settings() {
     const getData = async () => {
       if (uid) {
         let data = await GetSettingsData(uid);
+        
         setData(data);
+        SetLoading(false);
+
       }
-      SetLoading(false);
     };
     SetUpdateData(false);
     getData();

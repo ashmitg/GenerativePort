@@ -1,12 +1,6 @@
 "use client"
+import { MdRefresh } from 'react-icons/md'; // Importing the refresh icon
 
-import { Button } from "@/components/ui/button";
-import {
-  PopoverTrigger,
-  PopoverContent,
-  Popover,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
 import {
   CardDescription,
   CardTitle,
@@ -27,6 +21,14 @@ import { useGlobalAuth } from "@/lib/context";
 import { GetAnalytics } from "@/actions/analytics/action";
 import { useEffect, useState, Fragment } from "react"
 
+const spinnerStyles = {
+  animation: 'spin 1s linear infinite',
+  fontSize: '24px',
+  '@keyframes spin': {
+    '0%': { transform: 'rotate(0deg)' },
+    '100%': { transform: 'rotate(360deg)' },
+  },
+};
 
 interface IAnalyticsData {
   id: number;
@@ -51,27 +53,34 @@ export function Analytics() {
   useEffect(() => {
     const getAnalyticsData = async () => {
       if (uid) {
-        setLoading(true);
-        let res = await GetAnalytics(uid);
-        const result = res.reduce((acc: IResult, obj: any ) => {
-          if (obj.views > 0) {
-            acc.uniqueClicks += 1;
-            acc.totalClicks += obj.views;
-          }
-          acc.totalPitches += 1;
-          return acc;
-        }, { uniqueClicks: 0, totalClicks: 0, totalPitches: 0 } as IResult);
-        setAnalyticsData(result);
-        setData(res);
+        
+        try {
+          let res = await GetAnalytics(uid);
+          const result = res.reduce((acc: IResult, obj: any) => {
+            if (obj.views > 0) {
+              acc.uniqueClicks += 1;
+              acc.totalClicks += obj.views;
+            }
+            acc.totalPitches += 1;
+            return acc;
+          }, { uniqueClicks: 0, totalClicks: 0, totalPitches: 0 } as IResult);
+          setAnalyticsData(result);
+          setData(res);
+
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+
       }
 
       return true;
     }
     getAnalyticsData();
 
-    setLoading(false);
 
-  }, [])
+  }, [loading])
   return (
     <div>
       {loading ? <AnalyticsSkeleton /> : (
@@ -106,9 +115,16 @@ export function Analytics() {
                 </Card>
               </div>
               <Card>
+
                 <CardHeader>
-                  <CardTitle>Tracking</CardTitle>
+                  <div className="flex justify-between">
+                    <CardTitle>Tracking</CardTitle>
+                    <button onClick={() => setLoading(true)} disabled={loading} style={{ border: 'none', background: 'none' }}>
+                      <MdRefresh style={{ fontSize: '24px' }} />
+                    </button>
+                  </div>
                 </CardHeader>
+
                 <CardContent>
                   <div className="border rounded-lg w-full">
                     <div className="relative w-full overflow-auto">

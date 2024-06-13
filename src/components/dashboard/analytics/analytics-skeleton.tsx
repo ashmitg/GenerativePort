@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdRefresh } from 'react-icons/md'; // Importing the refresh icon
 
 import { CardHeader, Card, CardContent, CardDescription } from "@/components/ui/card"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
@@ -15,26 +16,29 @@ export function AnalyticsSkeleton() {
           <div className="grid md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-              <CardDescription>Total Clicks</CardDescription>
-              <div className="h-6 w-16 bg-gray-200 rounded mt-2" />
+                <CardDescription>Total Clicks</CardDescription>
+                <div className="h-6 w-16 bg-gray-200 rounded mt-2" />
               </CardHeader>
             </Card>
             <Card>
               <CardHeader>
-              <CardDescription>Number of Pitches</CardDescription>
-              <div className="h-6 w-16 bg-gray-200 rounded mt-2" />
+                <CardDescription>Number of Pitches</CardDescription>
+                <div className="h-6 w-16 bg-gray-200 rounded mt-2" />
               </CardHeader>
             </Card>
             <Card>
               <CardHeader>
-              <CardDescription>Pitch Open Rate</CardDescription>
-              <div className="h-6 w-16 bg-gray-200 rounded mt-2" />
+                <CardDescription>Pitch Open Rate</CardDescription>
+                <div className="h-6 w-16 bg-gray-200 rounded mt-2" />
               </CardHeader>
             </Card>
           </div>
           <Card>
             <CardHeader>
-              <CardTitle>Tracking</CardTitle>
+              <div className="flex justify-between">
+                <CardTitle>Tracking</CardTitle>
+                  <MdRefresh className="animate-spin" style={{ fontSize: '24px' }}></MdRefresh>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="border rounded-lg w-full">

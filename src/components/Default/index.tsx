@@ -14,6 +14,7 @@ import Loading from "./loading";
 import { Experience } from "../experience";
 import {UpdateAnalytics} from "@/actions/analytics/action";
 
+
 export function HomePage({ id }: { id: string | null }) {
   const [loading, setLoading] = useState(true);
   const [settingsData, setSettingsData] = useState<any>(null);
@@ -62,6 +63,8 @@ export function HomePage({ id }: { id: string | null }) {
                 {paragraphs?.title}
               </h1>
             )}
+
+
 
             {id && paragraphs && <TextGenerateSwap text={paragraphs?.intro} />}
 
