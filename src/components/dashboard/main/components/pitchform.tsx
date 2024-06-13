@@ -78,14 +78,14 @@ export function PitchForm({ data, uid, setOpen, id, CallBackUpdate }: ISection) 
     }
 
     return (
-        <DialogContent className="sm:max-w-[850px]">
+        <DialogContent className="sm:max-w-[850px] overflow-y-scroll max-h-screen">
             <DialogHeader>
                 <DialogTitle>Set Pitch</DialogTitle>
                 <DialogDescription>
                     Make changes to the pitch
                 </DialogDescription>
             </DialogHeader>
-
+        
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField

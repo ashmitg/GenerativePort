@@ -79,7 +79,7 @@ export function DialogForm({
   }
 
   return (
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent className="sm:max-w-prose overflow-y-scroll max-h-screen">
       <DialogHeader>
         <DialogTitle>Set {sectionname}</DialogTitle>
         <DialogDescription>
