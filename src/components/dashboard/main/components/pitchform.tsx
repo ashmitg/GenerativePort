@@ -32,7 +32,7 @@ import {
 const FormSchema = z.object({
     title: z.string().min(2).max(50000),
     description: z.string().min(2).max(50000),
-    link: z.string().max(50),
+    link: z.string().max(250),
     intro: z.string().max(5000),
     body: z.string().max(50000),
     conclusion: z.string().max(50000),
@@ -40,13 +40,14 @@ const FormSchema = z.object({
 
 interface ISection {
     data: any;
+    uid: string | null;
     setOpen: Dispatch<SetStateAction<boolean>>;
     id: string | null;
     CallBackUpdate: any;
 }
 
 
-export function PitchForm({ data, setOpen, id, CallBackUpdate }: ISection) {
+export function PitchForm({ data, uid, setOpen, id, CallBackUpdate }: ISection) {
     const [loading, SetLoading] = useState(false);
     const { SetUpdateData }: { SetUpdateData: React.Dispatch<React.SetStateAction<boolean>> } = useContext(UpdatePitchData);
 
@@ -66,7 +67,10 @@ export function PitchForm({ data, setOpen, id, CallBackUpdate }: ISection) {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         SetLoading(true);
 
-        await CallBackUpdate(id, data);
+        if(uid){
+            await CallBackUpdate(id, uid,  data);
+
+        }
 
         SetUpdateData(true);
         SetLoading(false);

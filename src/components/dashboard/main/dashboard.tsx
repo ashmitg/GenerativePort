@@ -2,7 +2,6 @@
 import { useEffect, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CardHeader, CardContent, Card } from "@/components/ui/card";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,6 +27,7 @@ import { GetPitches } from "@/actions/dashboard/getpitches/action";
 
 interface Item {
   id: string;
+  created: string;
   title: string;
   description: string;
   link: string;
@@ -35,6 +35,7 @@ interface Item {
   body: string;
   conclusion: string;
 }
+
 export function Dashboard() {
   const [data, setData] = useState<Item[]>([]);
   const [dataloading, setDataLoading] = useState(false);
@@ -45,10 +46,13 @@ export function Dashboard() {
 
   useEffect(() => {
     const getData = async () => {
-      let res = await GetPitches(null);
-      
+      let res = await GetPitches();
+
       if (res) {
-        setData(res as Item[]);
+        const sortedData = (res as Item[]).sort((a, b) => {
+          return new Date(b.created).getTime() - new Date(a.created).getTime();
+        });
+        setData(sortedData);
       } else {
         setData([]);
       }
@@ -63,7 +67,7 @@ export function Dashboard() {
   const authContext = useGlobalAuth();
   const uid = authContext ? authContext.uid : null;
   const formSchema = z.object({
-    title: z.string().min(2).max(50),
+    title: z.string().min(2).max(250),
     link: z.string().url(),
     description: z.string().min(2).max(2000),
   });

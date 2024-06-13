@@ -2,26 +2,41 @@
 import { db } from "@/firebase";
 import firebase from "firebase/compat/app";
 
-export async function UpdateAnalytics(id: string, uid: string, data: any) {
+export async function UpdateAnalytics(id: string, uid: string) {
   try {
     const docRef = db.collection("Analytics").doc(uid).collection("PageViews").doc(id);
 
-    const doc = await docRef.get();
+    const increment = firebase.firestore.FieldValue.increment(1);
+    await docRef.set({
+      views: increment,
+    }, { merge: true });
 
-    if (!doc.exists) {
-      await docRef.set({ views: 0, ...data }, { merge: true });
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 
-    } else {
+export async function CreateAnalytics(id: string, uid: string, data: any) {
 
-      const increment = firebase.firestore.FieldValue.increment(1);
-      await docRef.set({
-        views: increment,
-      }, { merge: true });
-    }
+  try {
+    const docRef = await db.collection("Analytics").doc(uid).collection("PageViews").doc(id);
+    await docRef.set({ views: 0, ...data, created: new Date().toISOString() });
     return true;
   } catch (error) {
     console.log(error);
     return false;
+  }
+}
+
+
+export async function UpdateAnalyticsData(id: string, uid: string, data: any) {
+  try {
+
+    await db.collection("Analytics").doc(uid).collection("PageViews").doc(id).set(data, { merge: true });
+    return true;
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -48,12 +63,12 @@ export async function DeleteAnalytics(id: string, uid: string) {
   }
 }
 
-async function MegeData(uid: string) {
-  let pitchdata = await db.collection("Pitch").get();
+// async function MegeData(uid: string) {
+//   let pitchdata = await db.collection("Pitch").get();
 
-  let data = pitchdata.docs.map(doc => ({ id: doc.id, uid: uid, title: doc.data().title }));
-  data.forEach(async (element) => {
-    await UpdateAnalytics(element.id, element.uid, { title: element.title })
-  });
-  console.log("updated")
-}
+//   let data = pitchdata.docs.map(doc => ({ id: doc.id, uid: uid, title: doc.data().title }));
+//   data.forEach(async (element) => {
+//     await UpdateAnalytics(element.id, element.uid, { title: element.title })
+//   });
+//   console.log("updated")
+// }

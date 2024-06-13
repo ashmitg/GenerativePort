@@ -21,18 +21,11 @@ import { useGlobalAuth } from "@/lib/context";
 import { GetAnalytics } from "@/actions/analytics/action";
 import { useEffect, useState, Fragment } from "react"
 
-const spinnerStyles = {
-  animation: 'spin 1s linear infinite',
-  fontSize: '24px',
-  '@keyframes spin': {
-    '0%': { transform: 'rotate(0deg)' },
-    '100%': { transform: 'rotate(360deg)' },
-  },
-};
 
 interface IAnalyticsData {
-  id: number;
+  id: string;
   views: number;
+  created: string;
   title: string;
 }
 
@@ -64,8 +57,13 @@ export function Analytics() {
             acc.totalPitches += 1;
             return acc;
           }, { uniqueClicks: 0, totalClicks: 0, totalPitches: 0 } as IResult);
+          
+          let sortedData = (res as IAnalyticsData[]).sort((a, b) => {
+            return new Date(b.created).getTime() - new Date(a.created).getTime();
+          });
+
           setAnalyticsData(result);
-          setData(res);
+          setData(sortedData);
 
         } catch (error) {
           console.log(error);
@@ -80,7 +78,7 @@ export function Analytics() {
     getAnalyticsData();
 
 
-  }, [loading])
+  }, [loading, uid])
   return (
     <div>
       {loading ? <AnalyticsSkeleton /> : (
@@ -108,7 +106,7 @@ export function Analytics() {
                   <CardHeader>
                     <CardDescription>Pitch Open Rate</CardDescription>
                     <CardTitle>
-                      {((analyticsData?.uniqueClicks / analyticsData?.totalPitches) * 100).toFixed(2)}%
+                      {((analyticsData?.uniqueClicks / analyticsData?.totalPitches) * 100).toFixed(1)}%
                     </CardTitle>
 
                   </CardHeader>

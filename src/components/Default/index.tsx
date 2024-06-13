@@ -8,7 +8,7 @@ import { TextGenerate } from "../aceternity/TextGenerate";
 import { useEffect, useState } from "react";
 import { GetSettingsData } from "@/actions/settings/getsettings/action";
 import { GetUser } from "@/actions/user/action";
-import { GetPitches } from "@/actions/dashboard/getpitches/action";
+import { GetPitchById } from "@/actions/dashboard/getpitches/action";
 import { GetProfileData } from "@/actions/settings/getsettings/action";
 import Loading from "./loading";
 import { Experience } from "../experience";
@@ -29,8 +29,8 @@ export function HomePage({ id }: { id: string | null }) {
         const [settingdata, profiledata, paragraphsdata, bool] = await Promise.all([
           GetSettingsData(user),
           GetProfileData(user),
-          GetPitches(id),
-          UpdateAnalytics(id, user, {}),
+          GetPitchById(id),
+          UpdateAnalytics(id, user),
         ]);
         setSettingsData(settingdata);
         setProfileData(profiledata);

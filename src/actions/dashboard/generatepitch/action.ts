@@ -3,7 +3,7 @@
 import OpenAI from "openai"
 import { GetProfileData } from '../../settings/getsettings/action'
 import { db } from '@/firebase'
-import { SetPitchData } from '../Setpitch/action'
+import {CreatePitch } from '../Setpitch/action'
 
 export async function GeneratePitch(uid: string, pitchdata: any) {
 
@@ -34,7 +34,7 @@ export async function GeneratePitch(uid: string, pitchdata: any) {
   const messageContent = response.choices[0].message.content;
   if (messageContent !== null) {
     let pitchdataobject = JSON.parse(messageContent);
-    await SetPitchData(null, uid, { ...pitchdata, intro: pitchdataobject?.Introduction, body: pitchdataobject?.Body, conclusion: pitchdataobject?.Conclusion });
+    await CreatePitch( uid, { ...pitchdata, intro: pitchdataobject?.Introduction, body: pitchdataobject?.Body, conclusion: pitchdataobject?.Conclusion });
   }
   return messageContent;
 }

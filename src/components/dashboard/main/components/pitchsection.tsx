@@ -53,6 +53,7 @@ export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, l
                             </DialogTrigger>
                             <PitchForm
                                 data={{ title: title, description: description, link: link, body: body, intro: intro, conclusion: conclusion }}
+                                uid={uid}
                                 setOpen={setOpen}
                                 id={id}
                                 CallBackUpdate={SetPitchData}
