@@ -5,7 +5,7 @@ import { DeleteAnalytics } from "@/actions/analytics/action";
 import firebase from "firebase/compat/app";
 
 
-export async function SetPitchData(id: string, uid: string, data: any) {
+export async function UpdatePitchData(id: string, uid: string, data: any) {
   try {
 
     console.log(data?.title, "data")

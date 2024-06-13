@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { FC, useContext, useState } from "react";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { PitchForm } from './pitchform'
-import { SetPitchData } from "@/actions/dashboard/Setpitch/action";
+import { UpdatePitchData } from "@/actions/dashboard/Setpitch/action";
 import { DeletePitch } from "@/actions/dashboard/Setpitch/action"
 import UpdatePitchData from '../Updatedata'
 import Link from 'next/link'
@@ -56,7 +56,7 @@ export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, l
                                 uid={uid}
                                 setOpen={setOpen}
                                 id={id}
-                                CallBackUpdate={SetPitchData}
+                                CallBackUpdate={UpdatePitchData}
                             />
                         </Dialog>
 
