@@ -17,15 +17,15 @@ export function DashboardSkeleton() {
               <h1 className="text-2xl font-bold">Generate New Link</h1>
 
               <form className="mt-6 grid gap-4">
-                <div className="grid gap-1.5">
+                <div className="grid gap-0">
                   <Label htmlFor="title">Title</Label>
                   <Input disabled id="title" placeholder="Pitch to Ycombinator - BioAI" />
                   <p className="text-sm text-gray-500">This is the title</p>
                 </div>
 
                 <div className="grid gap-1.5">
-                  <Label htmlFor="url">URL</Label>
-                  <Input disabled id="url" placeholder="Enter the URL" />
+                  <Label htmlFor="url">Link</Label>
+                  <Input disabled id="url" placeholder="https://ycombinator.com/" />
                   <p className="text-sm text-gray-500">link of the website your pitching too</p>
                 </div>
                 <div className="grid gap-1.5">
@@ -33,7 +33,7 @@ export function DashboardSkeleton() {
                   <Textarea
                     disabled
                     id="description"
-                    placeholder="Enter a description for your link"
+                    placeholder="Pitch to Ycombinator for an internship position at a biotech company specializing in curing cancer"
                   />
                   <p className="text-sm text-gray-500">Description of the position your pitching for</p>
 
