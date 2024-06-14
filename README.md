@@ -4,14 +4,14 @@ A powerful and customizable portfolio generator built with Next.js, shadcn UI, a
 
 ## Demo Settings
 
-[!Demo](https://github.com/ashmitg/GenerativePort/assets/84148720/e6f366c0-310c-46da-abc8-ce8996cdf859)
+[!Demo]()
 
 ## Demo Pitch
-[!Demo](https://github.com/ashmitg/GenerativePort/assets/84148720/1b1ccb4c-be18-449e-80c2-bd3914912031)
+[!Demo]()
 
 ## Demo Pitch Website
 
-[!Demo](https://github.com/ashmitg/GenerativePort/assets/84148720/bc8a1ff6-524d-4ed9-8033-5fd1c0f9c103)
+[!Demo]()
 
 ## Features
 
