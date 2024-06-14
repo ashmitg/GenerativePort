@@ -112,9 +112,7 @@ export function Dashboard() {
                   >
                     <div>
                       <h1 className="text-2xl font-bold">Generate New Link</h1>
-                      <p className="text-gray-500 ">
-                        Create a new link to pitch.
-                      </p>
+                      
 
                       <FormField
                         control={form.control}

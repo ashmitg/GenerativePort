@@ -12,7 +12,7 @@ const openai = new OpenAI({
 
 
 export async function GeneratePitch(uid: string, pitchdata: any) {
-  console.log(pitchdata, "pitchdata")
+
   
   let profileData = await GetProfileData(uid);
 
@@ -22,7 +22,7 @@ export async function GeneratePitch(uid: string, pitchdata: any) {
     messages: [
       {
         role: "system",
-        content: `provide some the response in JSON format returning Introduction, Body and Conclusion and written in first person`
+        content: `provide the response in JSON format returning Introduction, Body and Conclusion and written in first person`
       },
       {
         role: "user",
@@ -40,5 +40,6 @@ export async function GeneratePitch(uid: string, pitchdata: any) {
     let pitchdataobject = JSON.parse(messageContent);
     await CreatePitch( uid, { ...pitchdata, intro: pitchdataobject?.Introduction, body: pitchdataobject?.Body, conclusion: pitchdataobject?.Conclusion });
   }
+  console.log(messageContent, "messageContent")
   return messageContent;
 }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Fragment } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,26 +15,30 @@ export function DashboardSkeleton() {
           <div className="grid gap-8">
             <div>
               <h1 className="text-2xl font-bold">Generate New Link</h1>
-              <p className="text-gray-500 ">
-                Create a new link to share with your team or customers.
-              </p>
+
               <form className="mt-6 grid gap-4">
                 <div className="grid gap-1.5">
                   <Label htmlFor="title">Title</Label>
-                  <Input id="title" placeholder="Enter a title for your link" />
+                  <Input disabled id="title" placeholder="Pitch to Ycombinator - BioAI" />
+                  <p className="text-sm text-gray-500">This is the title</p>
                 </div>
+
                 <div className="grid gap-1.5">
                   <Label htmlFor="url">URL</Label>
-                  <Input id="url" placeholder="Enter the URL" />
+                  <Input disabled id="url" placeholder="Enter the URL" />
+                  <p className="text-sm text-gray-500">link of the website your pitching too</p>
                 </div>
                 <div className="grid gap-1.5">
                   <Label htmlFor="description">Description</Label>
                   <Textarea
+                    disabled
                     id="description"
                     placeholder="Enter a description for your link"
                   />
+                  <p className="text-sm text-gray-500">Description of the position your pitching for</p>
+
                 </div>
-                <Button className="w-full sm:w-auto" type="submit">
+                <Button disabled className="w-full sm:w-auto" type="submit">
                   Generate Link
                 </Button>
               </form>
@@ -48,93 +52,41 @@ export function DashboardSkeleton() {
                 View and manage all your generated links.
               </p>
               <div className="mt-6 grid gap-4">
-                <Card>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <Skeleton className="h-5 w-40" />
-                        <Skeleton className="h-4 w-32 mt-2" />
-                      </div>
-                      <div className="flex gap-2">
-                        <Skeleton className="h-8 w-8" />
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-4">
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <Skeleton className="h-5 w-40" />
-                        <Skeleton className="h-4 w-32 mt-2" />
-                      </div>
-                      <div className="flex gap-2">
-                        <Skeleton className="h-8 w-8" />
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-4">
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <Skeleton className="h-5 w-40" />
-                        <Skeleton className="h-4 w-32 mt-2" />
-                      </div>
-                      <div className="flex gap-2">
-                        <Skeleton className="h-8 w-8" />
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-4">
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <Fragment key={index}>
+                    <Card>
+                      <CardHeader>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <Skeleton className="h-5 w-40" />
+                            <Skeleton className="h-4 w-32 mt-2" />
+                          </div>
+                          <div className="flex gap-2">
+                            <Skeleton className="h-8 w-8" />
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid gap-4">
+                          <div className="flex items-center justify-between">
+                            <Skeleton className="h-4 w-32" />
+                            <Skeleton className="h-4 w-16" />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Skeleton className="h-4 w-32" />
+                            <Skeleton className="h-4 w-16" />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Skeleton className="h-4 w-32" />
+                            <Skeleton className="h-4 w-16" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Fragment>
+                ))}
+                
+
               </div>
             </div>
           </div>

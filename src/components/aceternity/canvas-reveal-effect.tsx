@@ -1,11 +1,19 @@
 "use client";
 import React from "react";
-
+import {Fragment} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./components/canvas-reveal-effect";
 import { MovingBorderDemo } from "./MovingBorder";
 
-export function CanvasRevealEffectDemo({ data }: any) {
+interface IContainerData {
+  title: string;
+  description: string;
+
+}
+
+export function CanvasRevealEffectDemo({ data }: {data: IContainerData[]}) {
+  let containerclass = ["bg-emerald-900", "bg-black", "bg-sky-600"]
+
   return (
     <div>
       {data && (
@@ -15,44 +23,28 @@ export function CanvasRevealEffectDemo({ data }: any) {
           </h1>
 
           <div className="max-w-7xl py-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4 mx-auto px-8">
-            <Card
-              title={data[0].title}
-              description={data[0].description}
-              icon={<MovingBorderDemo text={data[0].title} />}
-            >
-              <CanvasRevealEffect
-                animationSpeed={5.1}
-                containerClassName="bg-emerald-900"
-              />
-            </Card>
-            <Card
-              title={data[1].title}
-              description={data[1].description}
-              icon={<MovingBorderDemo text={data[1].title} />}
-            >
-              <CanvasRevealEffect
-                animationSpeed={3}
-                containerClassName="bg-black"
-                colors={[
-                  [236, 72, 153],
-                  [232, 121, 249],
-                ]}
-                dotSize={2}
-              />
-              {/* Radial gradient for the cute fade */}
-              <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
-            </Card>
-            <Card
-              title={data[2].title}
-              description={data[2].description}
-              icon={<MovingBorderDemo text={data[2].title} />}
-            >
-              <CanvasRevealEffect
-                animationSpeed={3}
-                containerClassName="bg-sky-600"
-                colors={[[125, 211, 252]]}
-              />
-            </Card>
+            {data.map((item, index)=> (
+                <Fragment key={index}>
+                  <Card
+                    title={item.title}
+                    description={item.description}
+                    icon={<MovingBorderDemo text={item.title} />}
+                  >
+                    <CanvasRevealEffect
+                      animationSpeed={3}
+                      containerClassName={containerclass[index]}
+                      colors={[
+                        [255, 255, 255],
+                        [255, 255, 255],
+                      ]}
+                      dotSize={2}
+                    />
+                    {/* Radial gradient for the cute fade */}
+                    <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
+                  </Card>
+                </Fragment>
+            ))}
+            
           </div>
         </>
       )}
