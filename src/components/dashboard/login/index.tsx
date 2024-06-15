@@ -10,6 +10,7 @@ export default function Login() {
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
       let response = await auth.signInWithPopup(provider);
+      console.log(response.user, "user rres")
       if(response){
         router.push('/dashboard')
       }

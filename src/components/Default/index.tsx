@@ -12,7 +12,7 @@ import { GetPitchById } from "@/actions/dashboard/getpitches/action";
 import { GetProfileData } from "@/actions/settings/getsettings/action";
 import Loading from "./loading";
 import { Experience } from "../experience";
-import {UpdateAnalytics} from "@/actions/analytics/action";
+import { UpdateAnalytics } from "@/actions/analytics/action";
 
 
 export function HomePage({ id }: { id: string | null }) {
@@ -58,23 +58,24 @@ export function HomePage({ id }: { id: string | null }) {
           <NavbarDemo className="top-0 fixed" data={profileData} />
           <div className="w-full bg-black flex-col md:flex-row pb-20 justify-center items-center">
             <Hero />
-            {id && paragraphs && (
-              <h1 className="text-neutral-400 text-5xl text-center font-bold">
-                {paragraphs?.title}
-              </h1>
-            )}
 
+            <div className="">
+              {id && paragraphs && (
+                <h1 className="text-neutral-400 text-5xl text-center font-bold">
+                  {paragraphs?.title}
+                </h1>
+              )}
 
+              {id && paragraphs && <TextGenerateSwap text={paragraphs?.intro} />}
 
-            {id && paragraphs && <TextGenerateSwap text={paragraphs?.intro} />}
+              {settingsData["Projects"] && (
+                <ProjectCarousel data={settingsData["Projects"]} />
+              )}
 
-            {settingsData["Projects"] && (
-              <ProjectCarousel data={settingsData["Projects"]} />
-            )}
-
-            {settingsData["Values"] && (
-              <CanvasRevealEffectDemo data={settingsData["Values"]} />
-            )}
+              {settingsData["Values"] && (
+                <CanvasRevealEffectDemo data={settingsData["Values"]} />
+              )}
+            </div>
 
             {id && paragraphs && (
               <TextGenerate
