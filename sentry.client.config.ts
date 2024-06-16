@@ -5,6 +5,7 @@
 import * as Sentry from "@sentry/nextjs";
 
 if (!window.location.pathname.startsWith("/dashboard") && process.env.NEXT_PUBLIC_NODE_ENV === "production") {
+  console.log("client initialized");
   Sentry.init({
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
@@ -30,4 +31,6 @@ if (!window.location.pathname.startsWith("/dashboard") && process.env.NEXT_PUBLI
     ],
     enabled: process.env.NEXT_PUBLIC_NODE_ENV === "production",
   });
+}else{
+  console.log("client not initialized")
 }
