@@ -39,39 +39,38 @@ export function Analytics() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any>(null);
   const [analyticsData, setAnalyticsData] = useState<any>(null);
-  const authContext = useGlobalAuth();
-  const uid = authContext ? authContext.uid : null;
+  const { uid } = useGlobalAuth();
+
   const baseUrl = window.location.origin;
 
   useEffect(() => {
     const getAnalyticsData = async () => {
-      if (uid) {
-        
-        try {
-          let res = await GetAnalytics(uid);
-          const result = res.reduce((acc: IResult, obj: any) => {
-            if (obj.views > 0) {
-              acc.uniqueClicks += 1;
-              acc.totalClicks += obj.views;
-            }
-            acc.totalPitches += 1;
-            return acc;
-          }, { uniqueClicks: 0, totalClicks: 0, totalPitches: 0 } as IResult);
-          
-          let sortedData = (res as IAnalyticsData[]).sort((a, b) => {
-            return new Date(b.created).getTime() - new Date(a.created).getTime();
-          });
 
-          setAnalyticsData(result);
-          setData(sortedData);
+      try {
+        let res = await GetAnalytics(uid);
+        const result = res.reduce((acc: IResult, obj: any) => {
+          if (obj.views > 0) {
+            acc.uniqueClicks += 1;
+            acc.totalClicks += obj.views;
+          }
+          acc.totalPitches += 1;
+          return acc;
+        }, { uniqueClicks: 0, totalClicks: 0, totalPitches: 0 } as IResult);
 
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
+        let sortedData = (res as IAnalyticsData[]).sort((a, b) => {
+          return new Date(b.created).getTime() - new Date(a.created).getTime();
+        });
 
+        setAnalyticsData(result);
+        setData(sortedData);
+
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
+
+
 
       return true;
     }

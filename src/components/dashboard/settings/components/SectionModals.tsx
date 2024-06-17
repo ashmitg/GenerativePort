@@ -6,7 +6,7 @@ import { DialogForm } from "./DialogForm";
 import { DeleteSettingsDoc } from "@/actions/settings/deletesetting/action";
 import { useContext } from "react";
 import { useGlobalAuth } from "@/lib/context";
-import UpdateContext from "./Updatedata";
+import useUpdateSettingsContext from "../UpdateSettingsData";
 import { Dispatch, SetStateAction } from "react";
 
 import {
@@ -35,19 +35,17 @@ export function SectionModals({
   sectionname,
   optInput,
 }: ISectionModal) {
-  const authContext = useGlobalAuth();
-  const uid = authContext?.uid;
+  const { uid } = useGlobalAuth();
 
-  const { SetUpdateData }: { SetUpdateData: typeUpdateFunction } =
-    useContext(UpdateContext);
+
+  const { SetUpdateData }: { SetUpdateData: typeUpdateFunction } = useUpdateSettingsContext();
   const [open, setOpen] = useState(false);
 
   const deleteSettings = async () => {
-    if (uid) {
-      let response = await DeleteSettingsDoc(uid, sectionname, id);
-      if (response) {
-        SetUpdateData(true);
-      }
+    let response = await DeleteSettingsDoc(uid, sectionname, id);
+    if (response) {
+      SetUpdateData(true);
+
     }
   };
 

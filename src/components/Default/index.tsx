@@ -1,3 +1,5 @@
+"use client"
+
 import { Hero } from "@/components/aceternity/Hero";
 import { NavbarDemo } from "../aceternity/navbar-menu";
 import { CanvasRevealEffectDemo } from "../aceternity/canvas-reveal-effect";
@@ -26,12 +28,13 @@ export function HomePage({ id }: { id: string | null }) {
       let user = await GetUser();
 
       if (id) {
-        const [settingdata, profiledata, paragraphsdata, bool] = await Promise.all([
+        const [settingdata, profiledata, paragraphsdata] = await Promise.all([
           GetSettingsData(user),
           GetProfileData(user),
           GetPitchById(id),
-          UpdateAnalytics(id, user),
         ]);
+
+        UpdateAnalytics(id, user)
         setSettingsData(settingdata);
         setProfileData(profiledata);
         setParagraphs(paragraphsdata);

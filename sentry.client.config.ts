@@ -4,6 +4,7 @@
 
 import * as Sentry from "@sentry/nextjs";
 
+console.log(window.location.pathname, "window.location.pathname")
 if (!window.location.pathname.startsWith("/dashboard") && process.env.NEXT_PUBLIC_NODE_ENV === "production") {
   console.log("client initialized");
   Sentry.init({

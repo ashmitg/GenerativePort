@@ -38,8 +38,7 @@ const formSchema = z.object({
 });
 
 export function Profile() {
-  const authContext = useGlobalAuth();
-  const uid = authContext?.uid;
+  const { uid } = useGlobalAuth();
   const [data, setData] = useState<any>({});
   const [loading, Setloading] = useState(false);
 
@@ -59,27 +58,25 @@ export function Profile() {
 
   useEffect(() => {
     const getData = async () => {
-      if (uid) {
-        let res = await GetProfileData(uid);
-        form.reset({
-          name: res?.name || "",
-          email: res?.email || "",
-          bio: res?.bio || "",
-          resume: res?.resume || "",
-          cv: res?.cv || "",
-          linkedin: res?.linkedin || "",
-          github: res?.github || "",
-          twitter: res?.twitter || "",
-        });
-        setData(res);
-      }
+      let res = await GetProfileData(uid);
+      form.reset({
+        name: res?.name || "",
+        email: res?.email || "",
+        bio: res?.bio || "",
+        resume: res?.resume || "",
+        cv: res?.cv || "",
+        linkedin: res?.linkedin || "",
+        github: res?.github || "",
+        twitter: res?.twitter || "",
+      });
+      setData(res);
+
     };
     getData();
   }, [form, uid]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     Setloading(true);
-    if (uid) {
       let res = await SetSettingData(
         "Settings",
         values,
@@ -88,7 +85,6 @@ export function Profile() {
         "default"
       );
       Setloading(false);
-    }
   }
 
   const handleButtonClick = () => {

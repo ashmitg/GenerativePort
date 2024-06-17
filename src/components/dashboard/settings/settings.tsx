@@ -5,35 +5,34 @@ import { useEffect, useState } from "react";
 import { Section } from "./components/Section";
 import { GetSettingsData } from "@/actions/settings/getsettings/action";
 import { useGlobalAuth } from "@/lib/context";
-import UpdateContext from "./components/Updatedata";
+import { UpdateSettingsContext } from "./UpdateSettingsData";
 import { SettingsSkeleton } from "./settings-skeleton";
 import { Button } from "@/components/ui/button";
 
 
 export function Settings() {
-  const authContext = useGlobalAuth();
-  const uid = authContext?.uid;
+  const { uid } = useGlobalAuth();
+
   const [data, setData] = useState<any>({});
   const [updatedata, SetUpdateData] = useState<boolean>(false);
   const [loading, SetLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
-      if (uid) {
-        let data = await GetSettingsData(uid);
-        
-        setData(data);
-        SetLoading(false);
+      let data = await GetSettingsData(uid);
 
-      }
+      setData(data);
+      SetLoading(false);
+
+
     };
     SetUpdateData(false);
     getData();
   }, [updatedata, uid]);
 
-  
+
   return (
-    <UpdateContext.Provider value={{ SetUpdateData }}>
+    <UpdateSettingsContext.Provider value={{ updatedata, SetUpdateData }}>
       {loading ? (
         <SettingsSkeleton />
       ) : (
@@ -93,6 +92,6 @@ export function Settings() {
           </div>
         </div>
       )}
-    </UpdateContext.Provider>
+    </UpdateSettingsContext.Provider>
   );
 }

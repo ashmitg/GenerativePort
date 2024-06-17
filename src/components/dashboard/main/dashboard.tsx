@@ -9,7 +9,7 @@ import { z } from "zod";
 import { Textarea } from "@/components/ui/textarea";
 
 import { PitchSection } from "./components/pitchsection";
-import UpdatePitchData from "./Updatedata";
+import {UpdateDashboardContext} from "./UpdateDashboardData";
 import {
   Form,
   FormControl,
@@ -66,8 +66,8 @@ export function Dashboard() {
     getData();
   }, [updatedata]);
 
-  const authContext = useGlobalAuth();
-  const uid = authContext ? authContext.uid : null;
+  const {uid} = useGlobalAuth();
+
   const formSchema = z.object({
     title: z.string().min(2).max(250),
     link: z.string().url(),
@@ -83,12 +83,12 @@ export function Dashboard() {
     },
   });
   const Servertrigger = async (values: z.infer<typeof formSchema>) => {
-    if (uid) {
       setDataLoading(true);
       await GeneratePitch(uid, values);
       SetUpdateData(true);
-    }
+    
   };
+  
   function onSubmit(values: z.infer<typeof formSchema>) {
     Servertrigger(values);
   }
@@ -97,7 +97,7 @@ export function Dashboard() {
     return <DashboardSkeleton />;
   }
   return (
-    <UpdatePitchData.Provider value={{ SetUpdateData }}>
+    <UpdateDashboardContext.Provider value={{updatedata, SetUpdateData}}>
       {loading ? (
         <DashboardSkeleton />
       ) : (
@@ -112,8 +112,6 @@ export function Dashboard() {
                   >
                     <div>
                       <h1 className="text-2xl font-bold">Generate New Link</h1>
-                      
-
                       <FormField
                         control={form.control}
                         name="title"
@@ -210,6 +208,6 @@ export function Dashboard() {
           </div>
         </div>
       )}
-    </UpdatePitchData.Provider>
+    </UpdateDashboardContext.Provider>
   );
 }

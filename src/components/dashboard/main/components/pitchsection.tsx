@@ -5,11 +5,12 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { PitchForm } from './pitchform'
 import { SetPitchData } from "@/actions/dashboard/Setpitch/action";
 import { DeletePitch } from "@/actions/dashboard/Setpitch/action"
-import UpdatePitchData from '../Updatedata'
 import Link from 'next/link'
+import useUpdateDashboardContext from "../UpdateDashboardData";
+
 
 interface PitchSectionProps {
-    uid: string | null;
+    uid: string;
     title: string;
     description: string;
     link: string;
@@ -20,14 +21,14 @@ interface PitchSectionProps {
 }
 
 export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, link, id, intro, body, conclusion }) => {
-    const { SetUpdateData } = useContext(UpdatePitchData);
+    console.log("pitch section render")
+    const { SetUpdateData } = useUpdateDashboardContext();
     const [open, setOpen] = useState(false);
 
     const clickDeletePitch = async () => {
-        if (uid) {
             await DeletePitch(id, uid);
             SetUpdateData(true);
-        }
+        
     }
     return (
         <Card>
@@ -56,11 +57,8 @@ export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, l
                                 uid={uid}
                                 setOpen={setOpen}
                                 id={id}
-                                CallBackUpdate={SetPitchData}
                             />
                         </Dialog>
-
-
 
                         <Button onClick={clickDeletePitch} size="icon" variant="ghost">
                             <TrashIcon className="h-4 w-4" />

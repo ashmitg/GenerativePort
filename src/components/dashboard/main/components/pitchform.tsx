@@ -2,11 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useGlobalAuth } from "@/lib/context";
 import { Dispatch, SetStateAction } from 'react';
-import { useContext, useState } from "react";
-import UpdatePitchData from "../Updatedata";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea"
+import useUpdateDashboardContext from "../UpdateDashboardData";
+import { SetPitchData } from "@/actions/dashboard/Setpitch/action";
+
 
 import {
     DialogContent,
@@ -40,16 +41,16 @@ const FormSchema = z.object({
 
 interface ISection {
     data: any;
-    uid: string | null;
+    uid: string;
     setOpen: Dispatch<SetStateAction<boolean>>;
-    id: string | null;
-    CallBackUpdate: any;
+    id: string;
 }
 
 
-export function PitchForm({ data, uid, setOpen, id, CallBackUpdate }: ISection) {
+export function PitchForm({ data, uid, setOpen, id }: ISection) {
+    console.log("pitch form render")
     const [loading, SetLoading] = useState(false);
-    const { SetUpdateData }: { SetUpdateData: React.Dispatch<React.SetStateAction<boolean>> } = useContext(UpdatePitchData);
+    const { SetUpdateData }: { SetUpdateData: React.Dispatch<React.SetStateAction<boolean>> } = useUpdateDashboardContext()
 
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -66,11 +67,7 @@ export function PitchForm({ data, uid, setOpen, id, CallBackUpdate }: ISection) 
 
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         SetLoading(true);
-
-        if(uid){
-            await CallBackUpdate(id, uid,  data);
-
-        }
+        await SetPitchData(id, uid, data);
 
         SetUpdateData(true);
         SetLoading(false);
@@ -85,7 +82,7 @@ export function PitchForm({ data, uid, setOpen, id, CallBackUpdate }: ISection) 
                     Make changes to the pitch
                 </DialogDescription>
             </DialogHeader>
-        
+
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField

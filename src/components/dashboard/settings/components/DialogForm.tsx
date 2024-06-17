@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGlobalAuth } from "@/lib/context";
 import { useContext, useState } from "react";
-import UpdateContext from "./Updatedata";
+import useUpdateSettingsContext from "../UpdateSettingsData";
 import { Textarea } from "@/components/ui/textarea";
 import {
   DialogContent,
@@ -53,8 +53,8 @@ export function DialogForm({
   CallBackUpdate,
 }: ISection) {
   const [loading, SetLoading] = useState(false);
-  const { SetUpdateData }: { SetUpdateData: React.Dispatch<React.SetStateAction<boolean>> } =
-    useContext(UpdateContext);
+  const { SetUpdateData }: { SetUpdateData: React.Dispatch<React.SetStateAction<boolean>> } = useUpdateSettingsContext()
+    
   const authContext = useGlobalAuth();
   const uid = authContext?.uid;
   
