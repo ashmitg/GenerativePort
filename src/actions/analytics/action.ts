@@ -6,9 +6,10 @@ export async function UpdateAnalytics(id: string, uid: string) {
   try {
     const docRef = db.collection("Analytics").doc(uid).collection("PageViews").doc(id);
 
+    console.log("coming to update", id)
     await docRef.get().then(async (doc) => {
       if (doc.exists) {
-        console.log("updating because exists:", id)
+        console.log("updating because", id)
         const increment = firebase.firestore.FieldValue.increment(1);
         console.log("updating", id)
         await docRef.set({
