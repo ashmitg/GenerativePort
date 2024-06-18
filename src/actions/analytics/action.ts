@@ -7,14 +7,13 @@ export async function UpdateAnalytics(id: string, uid: string) {
     const docRef = db.collection("Analytics").doc(uid).collection("PageViews").doc(id);
 
     const doc = await docRef.get();
-
+    console.log("id coming to update", id)
     if (doc.exists) {
+      console.log("updating", id)
       const increment = firebase.firestore.FieldValue.increment(1);
       await docRef.set({
         views: increment,
       }, { merge: true });
-    } else {
-      await docRef.set({ views: 1 });
     }
   } catch (error) {
     console.log(error);
