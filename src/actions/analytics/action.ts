@@ -6,10 +6,17 @@ export async function UpdateAnalytics(id: string, uid: string) {
   try {
     const docRef = db.collection("Analytics").doc(uid).collection("PageViews").doc(id);
 
-    const increment = firebase.firestore.FieldValue.increment(1);
-    await docRef.set({
-      views: increment,
-    }, { merge: true });
+    await docRef.get().then(async (doc) => {
+      if (doc.exists) {
+        const increment = firebase.firestore.FieldValue.increment(1);
+        await docRef.set({
+          views: increment,
+        }, { merge: true });
+      }else{
+        throw new Error("No such document");
+      }
+    })
+
 
   } catch (error) {
     console.log(error);

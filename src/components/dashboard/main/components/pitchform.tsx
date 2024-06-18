@@ -48,7 +48,6 @@ interface ISection {
 
 
 export function PitchForm({ data, uid, setOpen, id }: ISection) {
-    console.log("pitch form render")
     const [loading, SetLoading] = useState(false);
     const { SetUpdateData }: { SetUpdateData: React.Dispatch<React.SetStateAction<boolean>> } = useUpdateDashboardContext()
 

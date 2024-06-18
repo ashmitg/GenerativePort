@@ -21,7 +21,6 @@ interface PitchSectionProps {
 }
 
 export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, link, id, intro, body, conclusion }) => {
-    console.log("pitch section render")
     const { SetUpdateData } = useUpdateDashboardContext();
     const [open, setOpen] = useState(false);
 

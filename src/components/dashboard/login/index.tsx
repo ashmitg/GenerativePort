@@ -8,6 +8,7 @@ export default function Login() {
   const router = useRouter()
   const SignInG = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/gmail.send');
     try {
       let response = await auth.signInWithPopup(provider);
       console.log(response.user, "user rres")
@@ -17,8 +18,7 @@ export default function Login() {
     } catch (error) {
       console.log(error)
     }
-    
-}
+  }
   return (
     <div className="flex min-h-[100dvh] items-center justify-center bg-gray-100 px-2 ">
       <div className="mx-auto w-full max-w-md space-y-4 rounded-lg bg-gray p-6 shadow-lg ">

@@ -8,13 +8,10 @@ import { CardHoverEffectDemo } from "../aceternity/CardHover";
 import { TextGenerateSwap } from "../aceternity/TextGenerateSwap";
 import { TextGenerate } from "../aceternity/TextGenerate";
 import { useEffect, useState } from "react";
-import { GetSettingsData } from "@/actions/settings/getsettings/action";
-import { GetUser } from "@/actions/user/action";
 import { GetPitchById } from "@/actions/dashboard/getpitches/action";
-import { GetProfileData } from "@/actions/settings/getsettings/action";
 import Loading from "./loading";
 import { Experience } from "../experience";
-import { UpdateAnalytics } from "@/actions/analytics/action";
+
 
 
 export function HomePage({ id }: { id: string | null }) {
@@ -25,30 +22,35 @@ export function HomePage({ id }: { id: string | null }) {
 
   useEffect(() => {
     const getSetData = async () => {
-      let user = await GetUser();
+      try {
+        const response = await fetch('/api/getuserdata', { next: { revalidate: 3600 } });
 
-      if (id) {
-        const [settingdata, profiledata, paragraphsdata] = await Promise.all([
-          GetSettingsData(user),
-          GetProfileData(user),
-          GetPitchById(id),
-        ]);
+        const data = await response.json();
+        if (response.status === 200 && data?.settingdata && data?.profiledata) {
+          const { settingdata, profiledata } = data;
+          setSettingsData(settingdata);
+          setProfileData(profiledata);
+        }
 
-        UpdateAnalytics(id, user)
-        setSettingsData(settingdata);
-        setProfileData(profiledata);
-        setParagraphs(paragraphsdata);
+        if (id && id.length > 0) {
+          const paragraphsdata = await GetPitchById(id);
+          fetch('/api/setupdateanalytics', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id }),
+          });
 
-      } else {
-        const [settingdata, profiledata] = await Promise.all([
-          GetSettingsData(user),
-          GetProfileData(user),
-        ]);
-        setSettingsData(settingdata);
-        setProfileData(profiledata);
+          setParagraphs(paragraphsdata);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
+
     getSetData();
   }, [id]);
 
