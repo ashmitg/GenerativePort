@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     if (!user) {
       throw new Error("No user found");
     }
-    await UpdateAnalytics(id, user);
+    UpdateAnalytics(id, user);
 
     return NextResponse.json({ res: true }, { status: 200 });
   } catch (error) {
