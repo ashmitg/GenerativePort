@@ -6,24 +6,24 @@ export async function UpdateAnalytics(id: string, uid: string) {
   try {
     const docRef = db.collection("Analytics").doc(uid).collection("PageViews").doc(id);
 
-    docRef.get().then((doc) => {
-      if(doc.exists) {
-      console.log("updating because exists:", id)
-      const increment = firebase.firestore.FieldValue.increment(1);
-      console.log("adding an increment", id)
-      docRef.set({
-        views: increment,
-      }, { merge: true });
-    }else {
-      throw new Error("No such document");
-    }
-  })
+    await docRef.get().then(async (doc) => {
+      if (doc.exists) {
+        console.log("updating because exists:", id)
+        const increment = firebase.firestore.FieldValue.increment(1);
+        console.log("updating", id)
+        await docRef.set({
+          views: increment,
+        }, { merge: true });
+      }else{
+        throw new Error("No such document");
+      }
+    })
 
 
-} catch (error) {
-  console.log(error);
-  return false;
-}
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }
 
 export async function CreateAnalytics(id: string, uid: string, data: any) {
