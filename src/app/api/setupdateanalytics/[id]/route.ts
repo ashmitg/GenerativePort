@@ -7,6 +7,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   try {
     
     const {id} = params;
+    console.log("id received in the backend", id)
     const user = await GetUser();
     if (!user) {
       throw new Error("No user found");

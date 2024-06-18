@@ -1,5 +1,3 @@
-"use client"
-
 import { Hero } from "@/components/aceternity/Hero";
 import { NavbarDemo } from "../aceternity/navbar-menu";
 import { CanvasRevealEffectDemo } from "../aceternity/canvas-reveal-effect";
@@ -19,7 +17,6 @@ export function HomePage({ id }: { id: string | null }) {
   const [settingsData, setSettingsData] = useState<any>(null);
   const [profileData, setProfileData] = useState<any>(null);
   const [paragraphs, setParagraphs] = useState<any>(null);
-
   useEffect(() => {
     const getSetData = async () => {
       try {
