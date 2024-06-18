@@ -60,7 +60,7 @@ export function HomePage({ id }: { id: string | null }) {
         <Loading />
       ) : (
         <>
-          <NavbarDemo className="top-0 fixed" data={profileData} />
+          {profileData && <NavbarDemo className="top-0 fixed" data={profileData} />}
           <div className="w-full bg-black flex-col md:flex-row pb-20 justify-center items-center">
             <Hero />
 
@@ -73,11 +73,11 @@ export function HomePage({ id }: { id: string | null }) {
 
               {id && paragraphs && <TextGenerateSwap text={paragraphs?.intro} />}
 
-              {settingsData["Projects"] && (
+              {settingsData && settingsData["Projects"] && (
                 <ProjectCarousel data={settingsData["Projects"]} />
               )}
 
-              {settingsData["Values"] && (
+              {settingsData && settingsData["Values"] && (
                 <CanvasRevealEffectDemo data={settingsData["Values"]} />
               )}
             </div>
@@ -89,7 +89,7 @@ export function HomePage({ id }: { id: string | null }) {
               />
             )}
 
-            {settingsData["Skills"] && (
+            {settingsData && settingsData["Skills"] && (
               <CardHoverEffectDemo data={settingsData["Skills"]} />
             )}
 
@@ -100,12 +100,12 @@ export function HomePage({ id }: { id: string | null }) {
               />
             )}
 
-            {settingsData["Experiences"] && (
+            {settingsData && settingsData["Experiences"] && (
               <Experience data={settingsData["Experiences"]} />
             )}
           </div>
 
-          <NavbarDemo data={profileData} className="bottom-0" />
+          {profileData && <NavbarDemo data={profileData} className="bottom-0" />}
         </>
       )}
     </main>
