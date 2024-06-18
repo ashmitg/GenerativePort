@@ -3,13 +3,10 @@ import { NextRequest } from "next/server";
 import { GetUser } from "@/actions/user/action";
 import { UpdateAnalytics } from "@/actions/analytics/action";
 
-export async function POST(req: NextRequest) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     
-    // Parse the JSON body from the request stream
-    const body = await req.json();
-    const { id } = body;
-
+    const {id} = params;
     const user = await GetUser();
     if (!user) {
       throw new Error("No user found");
@@ -19,7 +16,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ res: true }, { status: 200 });
   } catch (error) {
     console.log(error);
-    // It's a good practice to return an error message and status code when catching errors
-    return NextResponse.json({ error: error }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 }); // It's better to return error.message for clearer client-side errors
   }
 }

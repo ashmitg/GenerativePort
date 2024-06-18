@@ -34,13 +34,7 @@ export function HomePage({ id }: { id: string | null }) {
 
         if (id && id.length > 0) {
           const paragraphsdata = await GetPitchById(id);
-          fetch('/api/setupdateanalytics', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: id }),
-          });
+          fetch(`/api/setupdateanalytics/${id}`, { cache: 'no-store' });
 
           setParagraphs(paragraphsdata);
         }
