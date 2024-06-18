@@ -23,7 +23,7 @@ export function HomePage({ id }: { id: string | null }) {
   useEffect(() => {
     const getSetData = async () => {
       try {
-        const response = await fetch('/api/getuserdata', { next: { revalidate: 3600 } });
+        const response = await fetch('/api/getuserdata', { next: { revalidate: 260000  } }); // 3 days
 
         const data = await response.json();
         if (response.status === 200 && data?.settingdata && data?.profiledata) {
