@@ -44,7 +44,7 @@ export function HomePage({ id }: { id: string | null }) {
 
     getSetData();
   }, [id]);
-
+  console.log(paragraphs?.intro, "info")
   return (
     <main className=" overflow-hidden">
       {loading ? (
@@ -56,13 +56,13 @@ export function HomePage({ id }: { id: string | null }) {
             <Hero />
 
             <div className="">
-              {id && paragraphs && (
+            {id && typeof paragraphs?.title === 'string' && (
                 <h1 className="text-neutral-400 text-5xl text-center font-bold">
                   {paragraphs?.title}
                 </h1>
               )}
 
-              {id && paragraphs && <TextGenerateSwap text={paragraphs?.intro} />}
+              {id && typeof paragraphs?.intro === 'string' && <TextGenerateSwap text={paragraphs?.intro} />}
 
               {settingsData && settingsData["Projects"] && (
                 <ProjectCarousel data={settingsData["Projects"]} />
@@ -73,7 +73,7 @@ export function HomePage({ id }: { id: string | null }) {
               )}
             </div>
 
-            {id && paragraphs && (
+            {id && typeof paragraphs?.body==='string' && (
               <TextGenerate
                 title={"Alignment with requirements"}
                 text={paragraphs?.body}
@@ -84,7 +84,7 @@ export function HomePage({ id }: { id: string | null }) {
               <CardHoverEffectDemo data={settingsData["Skills"]} />
             )}
 
-            {id && paragraphs && (
+            {id && typeof paragraphs?.conclusion === 'string' && (
               <TextGenerate
                 title={"My closing statement (powered by gpt)"}
                 text={paragraphs?.conclusion}

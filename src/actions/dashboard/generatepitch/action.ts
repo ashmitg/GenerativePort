@@ -22,7 +22,7 @@ export async function GeneratePitch(uid: string, pitchdata: any) {
     messages: [
       {
         role: "system",
-        content: `provide the response in JSON format returning Introduction, Body and Conclusion and written in first person`
+        content: `provide the response in JSON format returning Introduction, Body and Conclusion like {Introduction: "", Body: "", Conclusion: ""} and written in first person`
       },
       {
         role: "user",
