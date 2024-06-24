@@ -44,7 +44,7 @@ export function HomePage({ id }: { id: string | null }) {
 
     getSetData();
   }, [id]);
-  console.log(paragraphs?.intro, "info")
+
   return (
     <main className=" overflow-hidden">
       {loading ? (

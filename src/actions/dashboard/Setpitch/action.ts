@@ -3,6 +3,7 @@ import { db } from "@/firebase";
 import { UpdateAnalyticsData, CreateAnalytics } from "@/actions/analytics/action";
 import { DeleteAnalytics } from "@/actions/analytics/action";
 import firebase from "firebase/compat/app";
+import { revalidatePath } from 'next/cache'
 
 
 export async function SetPitchData(id: string, uid: string, data: any) {
@@ -12,7 +13,7 @@ export async function SetPitchData(id: string, uid: string, data: any) {
 
     await db.collection("Pitch").doc(id).set( data, { merge: true })
     await UpdateAnalyticsData(id, uid, { title: data?.title })
-
+    //revalidatePath("/dashboard")
     return true;
   } catch (error) {
     return false;

@@ -13,7 +13,7 @@ export function Hero() {
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
         <Spotlight className="-top-20 right-0 md:right md:-top-20" fill="purple" />
         <HeroHighlightDemo />
-        <TextRevealCardPreview />
+        {/* <TextRevealCardPreview /> */}
       </div>
 
     </div>
