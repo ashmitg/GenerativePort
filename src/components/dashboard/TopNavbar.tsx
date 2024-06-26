@@ -13,8 +13,8 @@ import { ReactNode } from 'react'
 
 export function TopNavbar({ children, breadcrumb }: { children: ReactNode, breadcrumb: ReactNode }) {
   return (
-    <div className="flex flex-col">
-      <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b px-3">
+    <div className="flex flex-col w-full">
+      <header className="flex h-14 lg:h-[75px] items-center  gap-4 border-b px-4 lg:items-end lg:pb-3">
         <Dialog>
           <SheetTrigger className="lg:hidden p-2 transition">
             <HamburgerMenuIcon />

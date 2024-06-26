@@ -37,7 +37,7 @@ export default function DashboardLayout({
         <SideNavbar />
           
 
-          <main className="flex flex-col gap-4 p-4 lg:gap-6">
+          <main className="flex flex-col gap-4 lg:gap-6">
             {children}
           </main>
 
