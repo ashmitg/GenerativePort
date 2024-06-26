@@ -95,7 +95,7 @@ export function SettingsSkeleton() {
             </div>
           </div>
           <div>
-            <h2 className="text-4xl font-bold font-bold text-gray-900">Skills</h2>
+            <h2 className="text-4xl font-bold text-gray-900">Skills</h2>
             <div className="mt-2 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-2 animate-pulse">

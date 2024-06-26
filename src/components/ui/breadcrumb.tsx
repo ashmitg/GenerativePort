@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { ChevronRight, MoreHorizontal } from "lucide-react"
+import Link from 'next/link';
 
 import { cn } from "@/lib/utils"
 
@@ -41,20 +42,24 @@ BreadcrumbItem.displayName = "BreadcrumbItem"
 
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a"> & {
-    asChild?: boolean
+  React.ComponentPropsWithoutRef<'span'> & {
+    asChild?: boolean;
+    href: string; // Ensure href is included in the component's props for Next.js Link
   }
->(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a"
+>(({ asChild, className, href, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'span';
 
+  // Wrap the Comp component with Next.js Link for client-side routing
   return (
-    <Comp
-      ref={ref}
-      className={cn("transition-colors hover:text-gray-950 dark:hover:text-gray-50", className)}
-      {...props}
-    />
-  )
-})
+    <Link href={href} passHref>
+      <Comp
+        ref={ref}
+        className={cn('transition-colors hover:text-gray-950 dark:hover:text-gray-50', className)}
+        {...props}
+      />
+    </Link>
+  );
+});
 BreadcrumbLink.displayName = "BreadcrumbLink"
 
 const BreadcrumbPage = React.forwardRef<

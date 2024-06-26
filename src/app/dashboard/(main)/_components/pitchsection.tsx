@@ -25,9 +25,9 @@ export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, l
     const [open, setOpen] = useState(false);
 
     const clickDeletePitch = async () => {
-            await DeletePitch(id, uid);
-            SetUpdateData(true);
-        
+        await DeletePitch(id, uid);
+        SetUpdateData(true);
+
     }
     return (
         <Card>
@@ -41,7 +41,8 @@ export const PitchSection: FC<PitchSectionProps> = ({ uid, title, description, l
                             {link}
                         </p>
                         <Link href={`/${id}`} scroll={false} target="_blank" rel="noopener noreferrer">
-                            <h3>{`${window.location.origin}/${id}`}</h3>                        </Link>
+                            <h3>{`${window.location.origin}/${id}`}</h3>
+                        </Link>
                     </div>
                     <div className="flex gap-2">
                         <Dialog open={open} onOpenChange={setOpen}>
