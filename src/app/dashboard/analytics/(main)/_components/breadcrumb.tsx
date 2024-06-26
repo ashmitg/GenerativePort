@@ -19,7 +19,7 @@ export function BreadCrumbComponent (){
           <Slash />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/analytics">Analytics</BreadcrumbLink>
+          <BreadcrumbLink href="/dashboard/analytics">Analytics</BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

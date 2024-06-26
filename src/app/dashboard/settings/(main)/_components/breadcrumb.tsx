@@ -20,7 +20,7 @@ export function BreadCrumbComponent() {
           <Slash />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/settings">Settings</BreadcrumbLink>
+          <BreadcrumbLink href="/dashboard/settings">Settings</BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

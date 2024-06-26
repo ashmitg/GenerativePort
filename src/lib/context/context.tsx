@@ -39,10 +39,10 @@ export const AuthGlobalProvider = ({ children }: { children: ReactNode }) => {
 
     }, []);
 
-    const uid = user?.uid;
-    const email = user ? user.email : null;
-    const displayname = user ? user.displayName : null;
-    const photoURL = user ? user.photoURL : null;
+    const uid = user? user.uid: "";
+    const email = user ? user.email : "";
+    const displayname = user ? user.displayName : "";
+    const photoURL = user ? user.photoURL : "";
     return (
         <AuthContext.Provider value={{ email, displayname, photoURL, loading, setLoading, uid }}>
             {children}
