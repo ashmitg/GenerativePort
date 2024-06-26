@@ -16,7 +16,7 @@ export function TopNavbar({ children, breadcrumb }: { children: ReactNode, bread
     <div className="flex flex-col">
       <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b px-3">
         <Dialog>
-          <SheetTrigger className="min-[1024px]:hidden p-2 transition">
+          <SheetTrigger className="lg:hidden p-2 transition">
             <HamburgerMenuIcon />
             <Link href="/dashboard">
               <span className="sr-only">Home</span>
@@ -28,20 +28,12 @@ export function TopNavbar({ children, breadcrumb }: { children: ReactNode, bread
                 <SheetTitle>Portfolio</SheetTitle>
               </Link>
             </SheetHeader>
-            <div className="flex flex-col space-y-3 mt-[1rem]">
+            <div className="flex flex-col space-y-3 mt-[1rem] w-5/6">
               <DialogClose asChild>
                 <Link href="/dashboard">
                   <Button variant="outline" className="w-full">
                     <HomeIcon className="mr-2 h-4 w-4" />
                     Home
-                  </Button>
-                </Link>
-              </DialogClose>
-              <DialogClose asChild>
-                <Link href="/dashboard/settings">
-                  <Button variant="outline" className="w-full">
-                    <Settings className="mr-2 h-4 w-4" />
-                    Settings
                   </Button>
                 </Link>
               </DialogClose>
@@ -53,10 +45,18 @@ export function TopNavbar({ children, breadcrumb }: { children: ReactNode, bread
                   </Button>
                 </Link>
               </DialogClose>
-
-              <Separator className="my-3" />
               <DialogClose asChild>
                 <Link href="/dashboard/settings">
+                  <Button variant="outline" className="w-full">
+                    <Settings className="mr-2 h-4 w-4" />
+                    Settings
+                  </Button>
+                </Link>
+              </DialogClose>
+              
+              <Separator className="my-3" />
+              <DialogClose asChild>
+                <Link href="#">
                   <Button variant="outline" className="w-full" onClick={() => auth.signOut()}>
                     <LogOut className="mr-2 h-4 w-4" />
                     Logout

@@ -10,7 +10,7 @@ import { Slash } from "lucide-react"
 
 export function BreadCrumbComponent (){
   return (
-    <Breadcrumb className="hidden lg:block">
+    <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
