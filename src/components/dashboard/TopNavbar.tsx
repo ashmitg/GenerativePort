@@ -28,7 +28,7 @@ export function TopNavbar({ children, breadcrumb }: { children: ReactNode, bread
                 <SheetTitle>Portfolio</SheetTitle>
               </Link>
             </SheetHeader>
-            <div className="flex flex-col space-y-3 mt-[1rem] w-5/6">
+            <div className="flex flex-col space-y-3 mt-[1rem]">
               <DialogClose asChild>
                 <Link href="/dashboard">
                   <Button variant="outline" className="w-full">
