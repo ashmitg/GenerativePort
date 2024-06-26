@@ -11,38 +11,36 @@ export function DashboardSkeleton() {
   return (
     <div className="grid min-h-screen w-full">
       <div className="flex flex-col">
-        <main className="flex-1 overflow-auto px-6 py-8">
-          <div className="grid gap-8">
-            <div>
-              <h1 className="text-2xl font-bold">Generate New Link</h1>
+        <main className="flex-1 overflow-auto px-6 py-5">
+          <div className="grid gap-2">
+            <h1 className="text-2xl font-bold text-left">Generate New Link</h1>
 
-              <form className="mt-6 grid gap-4">
-                <div className="grid gap-0">
-                  <Label htmlFor="title">Title</Label>
-                  <Input disabled id="title" placeholder="Pitch to Ycombinator - BioAI" />
-                  <p className="text-sm text-gray-500">This is the title</p>
-                </div>
+            <form className="mt-2 grid gap-3">
+              <div className="grid gap-3">
+                <Label htmlFor="title">Title</Label>
+                <Input disabled id="title" placeholder="Pitch to Ycombinator - BioAI" />
+                <p className="text-sm text-gray-500">This is the title</p>
+              </div>
 
-                <div className="grid gap-1.5">
-                  <Label htmlFor="url">Link</Label>
-                  <Input disabled id="url" placeholder="https://ycombinator.com/" />
-                  <p className="text-sm text-gray-500">link of the website your pitching too</p>
-                </div>
-                <div className="grid gap-1.5">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea
-                    disabled
-                    id="description"
-                    placeholder="Pitch to Ycombinator for an internship position at a biotech company specializing in curing cancer"
-                  />
-                  <p className="text-sm text-gray-500">Description of the position your pitching for</p>
+              <div className="grid gap-1.5">
+                <Label htmlFor="url">Link</Label>
+                <Input disabled id="url" placeholder="https://ycombinator.com/" />
+                <p className="text-sm text-gray-500">link of the website your pitching too</p>
+              </div>
+              <div className="grid gap-1.5">
+                <Label htmlFor="description">Description</Label>
+                <Textarea
+                  disabled
+                  id="description"
+                  placeholder="Pitch to Ycombinator for an internship position at a biotech company specializing in curing cancer"
+                />
+                <p className="text-sm text-gray-500">Description of the position your pitching for</p>
 
-                </div>
-                <Button disabled className="w-full sm:w-auto" type="submit">
-                  Generate Link
-                </Button>
-              </form>
-            </div>
+              </div>
+              <Button disabled className="w-full sm:w-auto" type="submit">
+                Generate Link
+              </Button>
+            </form>
             <div>
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold">All Links</h1>
@@ -85,7 +83,7 @@ export function DashboardSkeleton() {
                     </Card>
                   </Fragment>
                 ))}
-                
+
 
               </div>
             </div>

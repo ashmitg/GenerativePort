@@ -1,4 +1,4 @@
-import { Settings } from "@/components/dashboard/settings/settings";
+import { Settings } from "./(main)/settings";
 
 export default function SettingsPage() {
   return <Settings />;

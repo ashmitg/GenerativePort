@@ -1,6 +1,6 @@
 
 
-import {Dashboard} from '../../components/dashboard/main/dashboard'
+import { Dashboard } from "./dashboard"
 
 export default function DashboardPage(){
     return  <Dashboard/>

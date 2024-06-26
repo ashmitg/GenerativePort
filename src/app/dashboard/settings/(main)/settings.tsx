@@ -1,13 +1,22 @@
 "use client";
-import { Profile } from "./components/Profile";
-import { AddDialog } from "./components/AddDialog";
+import { Profile } from "./_components/Profile";
+import { AddDialog } from "./_components/AddDialog";
 import { useEffect, useState } from "react";
-import { Section } from "./components/Section";
+import { Section } from "./_components/Section";
 import { GetSettingsData } from "@/actions/settings/getsettings/action";
-import { useGlobalAuth } from "@/lib/context";
-import { UpdateSettingsContext } from "./UpdateSettingsData";
+import { useGlobalAuth } from "@/lib/context/context";
+import { UpdateSettingsContext } from "@/lib/context/UpdateSettingsData";
 import { SettingsSkeleton } from "./settings-skeleton";
 import { Button } from "@/components/ui/button";
+import {Separator} from "@/components/ui/separator"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 
 export function Settings() {
@@ -23,8 +32,6 @@ export function Settings() {
 
       setData(data);
       SetLoading(false);
-
-
     };
     SetUpdateData(false);
     getData();
@@ -36,8 +43,10 @@ export function Settings() {
       {loading ? (
         <SettingsSkeleton />
       ) : (
-        <div className="flex flex-col min-h-screen px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8">
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 py-5">
+            
             <div className="space-y-6">
               <div>
                 <Section

@@ -5,8 +5,8 @@ import { useState } from "react";
 import { DialogForm } from "./DialogForm";
 import { DeleteSettingsDoc } from "@/actions/settings/deletesetting/action";
 import { useContext } from "react";
-import { useGlobalAuth } from "@/lib/context";
-import useUpdateSettingsContext from "../UpdateSettingsData";
+import { useGlobalAuth } from "@/lib/context/context";
+import useUpdateSettingsContext from "../../../../../lib/context/UpdateSettingsData";
 import { Dispatch, SetStateAction } from "react";
 
 import {

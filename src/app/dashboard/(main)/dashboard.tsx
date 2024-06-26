@@ -7,9 +7,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Textarea } from "@/components/ui/textarea";
-
-import { PitchSection } from "./components/pitchsection";
-import {UpdateDashboardContext} from "./UpdateDashboardData";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { PitchSection } from "./_components/pitchsection";
+import { UpdateDashboardContext } from "@/lib/context/UpdateDashboardData";
 import {
   Form,
   FormControl,
@@ -19,12 +26,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useGlobalAuth } from "@/lib/context";
+import { useGlobalAuth } from "@/lib/context/context";
 import { GeneratePitch } from "@/actions/dashboard/generatepitch/action";
 import { Loader2 } from "lucide-react";
-import { DashboardSkeleton } from "@/components/dashboard/main/dashboard-skeleton";
+import { DashboardSkeleton } from "./dashboard-skeleton";
 import { GetPitches } from "@/actions/dashboard/getpitches/action";
-
+import {Separator} from "@/components/ui/separator";
 interface Item {
   id: string;
   created: string;
@@ -66,7 +73,7 @@ export function Dashboard() {
     getData();
   }, [updatedata]);
 
-  const {uid} = useGlobalAuth();
+  const { uid } = useGlobalAuth();
 
   const formSchema = z.object({
     title: z.string().min(2).max(250),
@@ -83,12 +90,12 @@ export function Dashboard() {
     },
   });
   const Servertrigger = async (values: z.infer<typeof formSchema>) => {
-      setDataLoading(true);
-      await GeneratePitch(uid, values);
-      SetUpdateData(true);
-    
+    setDataLoading(true);
+    await GeneratePitch(uid, values);
+    SetUpdateData(true);
+
   };
-  
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     Servertrigger(values);
   }
@@ -97,21 +104,22 @@ export function Dashboard() {
     return <DashboardSkeleton />;
   }
   return (
-    <UpdateDashboardContext.Provider value={{updatedata, SetUpdateData}}>
+    <UpdateDashboardContext.Provider value={{ updatedata, SetUpdateData }}>
       {loading ? (
         <DashboardSkeleton />
       ) : (
         <div className="grid min-h-screen w-full">
           <div className="flex flex-col">
-            <main className="flex-1 overflow-auto px-6 py-8">
-              <div className="grid gap-8">
+            <main className="flex-1 overflow-auto px-6 py-5">
+              <div className="grid gap-2">
+              <h1 className="text-2xl font-bold text-left">Generate New Link</h1>
+
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-8"
                   >
                     <div>
-                      <h1 className="text-2xl font-bold">Generate New Link</h1>
                       <FormField
                         control={form.control}
                         name="title"

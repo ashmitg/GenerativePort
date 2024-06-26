@@ -24,7 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { useGlobalAuth } from "@/lib/context";
+import { useGlobalAuth } from "@/lib/context/context";
 
 const formSchema = z.object({
   name: z.string().min(2).max(250),

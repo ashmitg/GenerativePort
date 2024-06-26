@@ -1,9 +1,10 @@
 "use client"
 import type { Metadata } from "next";
-import {Navbar} from "@/components/dashboard/navbar/navbar"
-import {useAuth} from '../hooks/auth'
-import {useRouter} from 'next/navigation'
-import {useEffect, useState} from 'react'
+import { useAuth } from "../hooks/auth";
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { SideNavbar } from "./(main)/_components/SideNavbar";
+
 
 export default function DashboardLayout({
   children,
@@ -12,30 +13,34 @@ export default function DashboardLayout({
 }) {
   const router = useRouter()
   const [loadingState, setLoadingState] = useState<boolean>(true)
-  const {loading, email} = useAuth()
+  const { loading, email } = useAuth()
 
-  useEffect(()=>{
+  useEffect(() => {
     if (loading) {
       setLoadingState(true)
-    }else if(!email){
+    } else if (!email) {
       setLoadingState(true)
 
       router.push('/signin')
-    }else{
+    } else {
       setLoadingState(false)
     }
   }, [loading, email, router])
-  
-  if(loadingState){
+
+  if (loadingState) {
     return null;
   }
 
   return (
     <>
-        
-        <div className="flex ">
-            <Navbar/>
-        <main className="w-full pt-16">{children}</main>
+      <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
+        <SideNavbar />
+          
+
+          <main className="flex flex-col gap-4 p-4 lg:gap-6">
+            {children}
+          </main>
+
       </div>
     </>
   );

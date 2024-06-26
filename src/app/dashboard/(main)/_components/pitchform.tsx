@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction } from 'react';
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea"
-import useUpdateDashboardContext from "../UpdateDashboardData";
+import useUpdateDashboardContext from "../../../../lib/context/UpdateDashboardData";
 import { SetPitchData } from "@/actions/dashboard/Setpitch/action";
 
 

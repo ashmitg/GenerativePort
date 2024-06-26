@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Dispatch, SetStateAction } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useGlobalAuth } from "@/lib/context";
+import { useGlobalAuth } from "@/lib/context/context";
 import { useContext, useState } from "react";
-import useUpdateSettingsContext from "../UpdateSettingsData";
+import useUpdateSettingsContext from "../../../../../lib/context/UpdateSettingsData";
 import { Textarea } from "@/components/ui/textarea";
 import {
   DialogContent,

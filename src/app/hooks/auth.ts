@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'
-import { useGlobalAuth } from '@/lib/context';
+import { useGlobalAuth } from '@/lib/context/context';
 
 export const useAuth = () => {
     const router = useRouter();

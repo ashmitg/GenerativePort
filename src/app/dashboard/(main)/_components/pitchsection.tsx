@@ -6,7 +6,7 @@ import { PitchForm } from './pitchform'
 import { SetPitchData } from "@/actions/dashboard/Setpitch/action";
 import { DeletePitch } from "@/actions/dashboard/Setpitch/action"
 import Link from 'next/link'
-import useUpdateDashboardContext from "../UpdateDashboardData";
+import useUpdateDashboardContext from "../../../../lib/context/UpdateDashboardData";
 
 
 interface PitchSectionProps {

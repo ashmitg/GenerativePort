@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export function SettingsSkeleton() {
   return (
-    <div className="flex flex-col min-h-screen px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex flex-col min-h-screen px-4 py-5 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <div className="space-y-6">
           <div>
@@ -55,7 +55,7 @@ export function SettingsSkeleton() {
             </div>
           </div>
           <div>
-            <h2 className="text-4xl font-bold font-medium text-gray-900">Awards</h2>
+            <h2 className="text-4xl font-bold text-gray-900">Awards</h2>
             <div className="mt-2 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-2 animate-pulse">
@@ -95,7 +95,7 @@ export function SettingsSkeleton() {
             </div>
           </div>
           <div>
-            <h2 className="text-4xl font-bold font-medium text-gray-900">Skills</h2>
+            <h2 className="text-4xl font-bold font-bold text-gray-900">Skills</h2>
             <div className="mt-2 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-2 animate-pulse">
@@ -137,7 +137,7 @@ export function SettingsSkeleton() {
         </div>
         <div className="space-y-6">
           <div>
-            <h2 className="text-4xl font-bold font-medium text-gray-900">Experiences</h2>
+            <h2 className="text-4xl font-bold  text-gray-900">Experiences</h2>
             <div className="mt-2 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-2 animate-pulse">
@@ -161,7 +161,7 @@ export function SettingsSkeleton() {
             </div>
           </div>
           <div>
-            <h2 className="text-4xl font-bold font-medium text-gray-900">Projects</h2>
+            <h2 className="text-4xl font-bold  text-gray-900">Projects</h2>
             <div className="mt-2 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-2 animate-pulse">
@@ -203,7 +203,7 @@ export function SettingsSkeleton() {
         </div>
         <div className="space-y-6">
           <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm   ">
-            <h2 className="text-lg font-medium text-gray-900 ">Profile</h2>
+            <h2 className="text-lg font-bold text-gray-900 ">Profile</h2>
             <div className="mt-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 animate-pulse">

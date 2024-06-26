@@ -1,5 +1,5 @@
 "use client"
-import Login from "@/components/dashboard/login/index"
+import Login from './_components'
 import firebase from 'firebase/compat/app'
 
 export default function LoginFlow(){

@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { CreateUser } from '@/actions/user/action'
 import { Dispatch, SetStateAction } from 'react';
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
 
 interface IAuthContext {
     email: string;

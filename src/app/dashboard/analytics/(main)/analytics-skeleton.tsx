@@ -7,8 +7,8 @@ import { CardTitle } from "@/components/ui/card";
 export function AnalyticsSkeleton() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-white-100  px-4 md:px-6 flex items-center h-16 border-b">
-        <h1 className="text-xl font-semibold">Pitch Performance</h1>
+      <header className="bg-white-100  px-4 md:px-6 flex items-center h-16">
+        <h1 className="text-2xl font-bold">Pitch Performance</h1>
         <div className="ml-auto flex items-center gap-4"></div>
       </header>
       <main className="flex-1 p-4 md:p-6">

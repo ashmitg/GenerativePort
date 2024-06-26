@@ -1,4 +1,4 @@
-import { SettingsSkeleton } from "@/components/dashboard/settings/settings-skeleton";
+import { SettingsSkeleton } from "./(main)/settings-skeleton";
 
 export default function SettingsLoading() {
     return <SettingsSkeleton />;

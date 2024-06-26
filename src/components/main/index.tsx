@@ -8,7 +8,7 @@ import { TextGenerate } from "../aceternity/TextGenerate";
 import { useEffect, useState } from "react";
 import { GetPitchById } from "@/actions/dashboard/getpitches/action";
 import Loading from "./loading";
-import { Experience } from "../experience";
+import { Experience } from "./experience";
 
 
 
