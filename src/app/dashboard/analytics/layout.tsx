@@ -1,5 +1,5 @@
 "use client"
-import { TopNavbar } from "../(main)/_components/TopNavbar";
+import { TopNavbar } from "@/components/dashboard/TopNavbar";
 import { BreadCrumbComponent } from "./(main)/_components/breadcrumb";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
