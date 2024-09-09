@@ -27,9 +27,9 @@ import {
 import { useGlobalAuth } from "@/lib/context/context";
 
 const formSchema = z.object({
-  name: z.string().min(2).max(250),
+  name: z.string().min(2).max(500),
   email: z.string().email(),
-  bio: z.string().max(250),
+  bio: z.string().max(500),
   resume: z.string().optional(),
   cv: z.string().optional(),
   linkedin: z.string().optional(),

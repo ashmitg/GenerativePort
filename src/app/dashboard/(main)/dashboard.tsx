@@ -76,7 +76,7 @@ export function Dashboard() {
   const { uid } = useGlobalAuth();
 
   const formSchema = z.object({
-    title: z.string().min(2).max(250),
+    title: z.string().min(2).max(500),
     link: z.string().url(),
     description: z.string().min(2).max(2000),
   });

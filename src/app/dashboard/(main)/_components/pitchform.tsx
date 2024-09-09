@@ -33,7 +33,7 @@ import {
 const FormSchema = z.object({
     title: z.string().min(2).max(50000),
     description: z.string().min(2).max(50000),
-    link: z.string().max(250),
+    link: z.string().max(500),
     intro: z.string().max(5000),
     body: z.string().max(50000),
     conclusion: z.string().max(50000),
